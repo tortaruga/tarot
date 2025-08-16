@@ -1,29 +1,45 @@
 @charset "UTF-8";
-* {
-  box-sizing: border-box;
+@keyframes textAnimation {
+  0% {
+    stroke-dashoffset: 290;
+    transform: scale(0.6);
+  }
+  50% {
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    transform: scale(1);
+    fill: #e7d6c8;
+  }
 }
-
-body {
-  margin: 0;
-  background: linear-gradient(to bottom right, #8b7fad, #5b63a4) no-repeat;
-  font-family: sans-serif;
-  min-height: 100vh;
-  color: rgb(51, 41, 54);
-  color: #e7d6c8;
-  text-align: center;
-  background: radial-gradient(transparent, rgb(0, 0, 0)), url(/assets/bg.jpg) no-repeat;
-  background-position: center;
-  background-size: cover;
-  font-family: "nata sans", sans-serif;
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 .home {
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0rem;
+  background-color: #3c096c;
+  background: radial-gradient(transparent, rgba(0, 0, 0, 0.795)), url(/assets/bg.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .home p {
   color: #dfc0ae;
@@ -40,11 +56,6 @@ body {
   margin-block-start: 3rem;
 }
 
-button {
-  cursor: pointer;
-  font-family: inherit;
-}
-
 .home button,
 .reading button:not(.close-btn) {
   color: #3c096c;
@@ -55,11 +66,11 @@ button {
   font-size: 1rem;
   transition: 0.4s;
   background-color: #9d4edd;
+  background: linear-gradient(to top right, #9d4edd, #e0aaff);
 }
 .home button:hover,
 .reading button:not(.close-btn):hover {
-  background: #e0aaff;
-  color: #3c096c;
+  transform: scale(1.05);
 }
 
 svg path {
@@ -72,26 +83,15 @@ svg path {
   transform-origin: center;
 }
 
-@keyframes textAnimation {
-  0% {
-    stroke-dashoffset: 290;
-    transform: scale(0.6);
-  }
-  50% {
-    fill: transparent;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    transform: scale(1);
-    fill: #e7d6c8;
-  }
-}
 .reading {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   animation: appear 4s both;
+  background: radial-gradient(transparent, rgba(0, 0, 0, 0.795)), url(/assets/bg.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .reading-container {
@@ -100,7 +100,6 @@ svg path {
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  animation: appear 4s both;
 }
 
 #shuffle-gif {
@@ -112,14 +111,6 @@ svg path {
   transform: translate(-50%, -50%);
 }
 
-@keyframes rotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -133,10 +124,18 @@ svg path {
   max-width: 300px;
   min-width: 200px;
 }
+.cards .card h1 {
+  font-size: 1.2rem;
+}
 .cards .card .card-img {
   box-shadow: 0.3rem 0.2rem 10px rgba(51, 41, 54, 0.681);
   max-width: 200px;
   filter: saturate(0.6);
+}
+
+.info {
+  font-size: 0.9rem;
+  color: #acb0cd;
 }
 
 .keywords {
@@ -149,12 +148,12 @@ svg path {
 }
 
 .keyword {
-  color: #5b63a4;
   color: #240046;
   background-color: #e0aaff;
+  background: linear-gradient(to bottom right, #9d4edd, #e0aaff);
   width: -moz-max-content;
   width: max-content;
-  padding: 0.5rem 0.7rem;
+  padding: 0.2rem 0.75rem;
   border-radius: 2rem;
   font-size: 0.8rem;
   box-shadow: 0.2rem 0.1rem 10px rgba(51, 41, 54, 0.377);
@@ -166,8 +165,8 @@ img {
 }
 
 .more-details {
-  background-color: #5b63a4;
-  background-color: #240046;
+  background-color: #3c096c;
+  background: linear-gradient(to bottom right, #240046, #3c096c, #e0aaff 145%);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -178,9 +177,9 @@ img {
   max-width: 500px;
   box-shadow: 0.3rem 0.2rem 40px rgba(5, 5, 5, 0.985);
   color: #acb0cd;
-  z-index: 1;
+  z-index: 9;
   transition: 1s;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 .more-details h2 {
   color: #e7d6c8;
@@ -192,6 +191,16 @@ img {
   width: 2.5rem;
   aspect-ratio: 1;
   border: none;
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(5, 5, 5, 0.301);
+  z-index: 2;
 }
 
 .book {
@@ -211,7 +220,6 @@ img {
   border-radius: 2rem;
   text-align: center;
   color: #e7d6c8;
-  background-color: #e7d6c8;
   background-color: #240046;
   border: none;
 }
@@ -227,12 +235,10 @@ img {
 .filters .buttons {
   display: flex;
   border: none;
-  display: flex;
 }
 .filters .buttons button {
   flex-grow: 1;
   padding: 0.25rem;
-  background-color: #e7d6c8;
   background-color: #3c096c;
   border: 1px solid #240046;
   transition: 0.3s;
@@ -263,6 +269,7 @@ img {
 }
 .card-gallery .card-preview {
   width: 150px;
+  filter: saturate(0.6);
   transition: 0.3s;
   animation: appear 2s backwards;
   animation-delay: var(--delay);
@@ -300,6 +307,7 @@ img {
 }
 .detail-page .general img {
   max-width: 200px;
+  filter: saturate(0.6);
 }
 
 .content {
@@ -313,7 +321,6 @@ img {
 .text-content {
   flex-grow: 1;
   display: flex;
-  grid-template-columns: 100%;
   gap: 1rem;
   max-width: 800px;
   flex-wrap: wrap;
@@ -322,14 +329,17 @@ img {
 
 .box.two {
   background-color: #240046;
+  background: linear-gradient(to top right, #9d4edd -50%, #3c096c 30%, #3c096c 80%, #e0aaff 145%);
 }
 
 .box {
   background-color: #3c096c;
+  background: linear-gradient(to bottom right, #240046, #3c096c, #e0aaff 145%);
   padding: 1rem;
   border-radius: 1rem;
   flex-grow: 1;
   color: #8b7fad;
+  box-shadow: 0.3rem 0.2rem 20px #10002b;
 }
 .box .header {
   display: flex;
@@ -388,20 +398,33 @@ img {
   opacity: 1;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(to bottom right, #8b7fad, #9d4edd) no-repeat;
+  font-family: sans-serif;
+  min-height: 100vh;
+  color: rgb(51, 41, 54);
+  color: #e7d6c8;
+  text-align: center;
+  background: radial-gradient(transparent, rgba(0, 0, 0, 0.795)), url(/assets/bg.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  background: linear-gradient(to top right, #9d4edd -50%, #10002b 30%, #10002b 80%, #e0aaff 145%);
+  font-family: "nata sans", sans-serif;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
 ul {
   list-style: "✦";
 }
 ul li {
   padding-left: 0.5rem;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
 }/*# sourceMappingURL=styles.css.map */

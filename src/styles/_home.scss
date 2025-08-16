@@ -1,0 +1,60 @@
+@use '_colors.scss' as c; 
+@use '_keyframes.scss' as animate;
+
+.home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+    gap: 0rem;
+    background-color: c.$medium-purple;
+    background: radial-gradient(transparent, rgba(0, 0, 0, 0.795)), url(/assets/bg.jpg) no-repeat; 
+    background-position: center;
+    background-size: cover; 
+
+    p {
+        color: c.$dust;
+        font-style: italic; 
+        animation: appear 1s 4s both;
+    }
+}
+
+.home .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: appear 1s 4s both;
+    margin-block-start: 3rem;
+}
+
+.home button, 
+.reading button:not(.close-btn) {
+    color: c.$medium-purple;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: .4s;
+    background-color: c.$purple;
+    background: linear-gradient(to top right, c.$purple, c.$light-purple); 
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+ 
+
+svg {
+    path {
+        fill: none; 
+        stroke: c.$vanilla; 
+        stroke-width: 0.3;
+        stroke-dasharray: 290;
+        stroke-dashoffset: 290;
+        animation: textAnimation 6s forwards;
+        transform-origin: center;
+    }
+}

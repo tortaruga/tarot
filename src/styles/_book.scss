@@ -1,0 +1,95 @@
+@use '_colors.scss' as c; 
+@use '_keyframes.scss';
+
+.book {
+    padding: 1rem;
+    min-height: 100vh; 
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 800px;
+    margin: auto auto 2rem;
+
+    input {
+        padding: .5rem;
+        border-radius: 2rem;   
+        text-align: center;
+        color: c.$vanilla;
+        background-color: c.$dark-purple;
+        border: none;
+
+        &::placeholder {
+            color: c.$cadetblue;
+        }
+
+        &:focus-visible {
+            outline: 2px solid c.$cadetblue;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        border: none;
+
+        button {
+            flex-grow: 1;
+            padding: .25rem;
+            background-color: c.$medium-purple;
+            border: 1px solid c.$dark-purple;
+            transition: .3s;
+
+            &:focus-visible {
+                outline-color: c.$lavender;
+            }
+
+            &:hover {
+                background-color: c.$purple;
+            }
+
+            &:first-of-type {
+                border-radius: .5rem 0 0 1rem;
+            }
+
+            &:last-of-type {
+                border-radius: 0 .5rem 1rem 0;
+            }
+
+            img {
+                width: 1.5rem;
+            }
+        }
+
+    }
+}
+
+.card-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 5rem auto auto;
+    justify-content: space-around;
+    
+    .card-preview { 
+        width: 150px; 
+        filter: saturate(.6);
+        transition: .3s; 
+        animation: appear 2s backwards;
+        animation-delay: var(--delay); 
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    }
+}

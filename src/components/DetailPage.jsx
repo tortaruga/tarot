@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import tarot from '../tarot-images.json';
 import LiElement from './LiElement.jsx';
 import Keyword from './Keyword.jsx';
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function DetailPage(props) {
     const [light, setLight] = useState(true);
@@ -10,6 +10,22 @@ export default function DetailPage(props) {
 
     const {id} = useParams();
     const card = tarot.cards.find(card => slugify(card.name) === id);
+    const questionsRef = useRef(null);
+    const characteristicsRef = useRef(null);
+    const fortuneRef = useRef(null);
+    const meaningsRef = useRef(null);
+    const [contentHeights, setContentHeights] = useState({
+        characteristics: 'auto',
+        questions: 'auto',
+        fortune: 'auto',
+        meanings: 'auto',
+    }) 
+
+    useEffect(() => {
+        if (questionsRef) {
+            
+        }
+    }, [show])
 
     
     function fixImgPath(path) {
@@ -73,7 +89,7 @@ export default function DetailPage(props) {
                         <button className={show === 'characteristics' ? 'active' : ''}></button>
                     </div>
 
-                    <div className={show === 'characteristics' ? 'content' : 'content hide'}>
+                    <div ref={characteristicsRef} className={show === 'characteristics' ? 'content' : 'content hide'}>
                     {card.Affirmation && <p>Affirmation: <span>{card.Affirmation}</span></p> }
             
                     {card.Archetype && <p>Archetype: <span>{card.Archetype}</span></p>}
@@ -98,7 +114,7 @@ export default function DetailPage(props) {
                         <button className={show === 'questions' ? 'active' : ''}></button>
                     </div>
                     
-                    <div className={show === 'questions' ? 'content' : 'content hide'}>
+                    <div ref={questionsRef} className={show === 'questions' ? 'content' : 'content hide'}>
                         <ul>{questionsLi}</ul>
                     </div>
                 </div>
@@ -109,7 +125,7 @@ export default function DetailPage(props) {
                         <button className={show === 'fortune' ? 'active' : ''}></button>
                     </div>
                     
-                    <div className={show === 'fortune' ? 'content' : 'content hide'}>
+                    <div ref={fortuneRef} className={show === 'fortune' ? 'content' : 'content hide'}>
                         <ul>{fortunesLi}</ul>
                     </div>
                 </div>
@@ -120,7 +136,7 @@ export default function DetailPage(props) {
                         <button className={show === 'meanings' ? 'active' : ''}></button>
                     </div>
                     
-                    <div className={show === 'meanings' ? 'content' : 'content hide'}>
+                    <div ref={meaningsRef} className={show === 'meanings' ? 'content' : 'content hide'}>
                         <div className="btns">
                             <button className={light ? 'active' : ''} onClick={() => setLight(true)}>upright</button>
                             <button className={!light ? 'active' : ''} onClick={() => setLight(false)}>reversed</button>

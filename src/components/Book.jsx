@@ -6,6 +6,7 @@ import wandsIcon from '/assets/wands.svg';
 import swordsIcon from '/assets/swords.svg';
 import cupsIcon from '/assets/cups.svg';
 import pentaclesIcon from '/assets/pentacles.svg'; 
+import { Link } from "react-router-dom";
 
 
 export default function Book() {
@@ -68,7 +69,8 @@ export default function Book() {
                 </div>
             </div>
 
-            
+            <Link to='/reading' style={{color: 'inherit', fontSize: '.9rem'} } >or click here to start a reading</Link>
+              
             <div className="card-gallery">
                 {cardElements}
             </div>

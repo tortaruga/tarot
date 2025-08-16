@@ -22,6 +22,8 @@ export default function Card(props) {
         <div className="card" onClick={handleShowDetails}>
             <img className="card-img" src={props.image} alt="card illustration" />
             <h1>{props.name}</h1>
+            
+            {showDetails && <div className="backdrop"></div>}
 
             {showDetails && (
                 <div className="more-details">

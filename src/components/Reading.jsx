@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import tarot from '../tarot-images.json';
 import Card from './Card';
 import shuffleGif from '/assets/sun.svg';
+import { Link } from 'react-router-dom';
 
 export default function Reading() {
     const cards = tarot.cards;
@@ -73,9 +74,11 @@ export default function Reading() {
 
             {(showCards && cardElements.length !== 0) && (
                 <div className="reading-container">
-                <p>click on a card to see more details</p>
+                <p className='info'>click on a card to see more details</p>
                 <div className="cards">{cardElements}</div>
                 <button onClick={handleBeginButton}>new reading</button>
+
+                <Link to='/book' style={{color: 'inherit', fontSize: '.9rem'} } >or explore all cards</Link>
               </div>
             )}
            
