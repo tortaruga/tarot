@@ -18,6 +18,8 @@ export default function Home() {
                 <button className="section-button">reading</button>
               </Link>
             </div>
+
+            <div className="credits">background image by <a href="https://it.freepik.com/foto-gratuito/sfondio-di-carta-da-parati-artistica-sfocata-e-colorata_61217250.htm#fromView=search&page=1&position=7&uuid=4f546f7d-2c7b-44be-bb37-b16c84856865&query=background+gradient" target="_blank">Mateus Andre - Freepik</a></div>
         </section>
     )
 }

@@ -1,8 +1,8 @@
-import { Routes, Route, Link } from "react-router-dom"
-import Book from "./components/Book.jsx"
-import Reading from './components/Reading.jsx'
-import Home from "./components/Home.jsx"
-import DetailPage from "./components/DetailPage.jsx"
+import { Routes, Route} from "react-router-dom"
+import Book from "./components/Layout/Book.jsx"
+import Reading from './components/Layout/Reading.jsx'
+import Home from "./components/Layout/Home.jsx"
+import DetailPage from "./components/Layout/DetailPage.jsx"
 
 function App() {
   return (

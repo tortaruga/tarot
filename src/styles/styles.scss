@@ -11,17 +11,16 @@
 
 body {
     margin: 0;
-    background: linear-gradient(to bottom right, c.$lavender, c.$purple) no-repeat;
-    font-family: sans-serif;
     min-height: 100vh;
-    color: rgb(51, 41, 54);
     color: c.$vanilla; 
     text-align: center;
-    background: radial-gradient(transparent, rgba(0, 0, 0, 0.795)), url(/assets/bg.jpg) no-repeat; 
     background-position: center;
     background-size: cover; 
+    background-color: #10002b;
     background: linear-gradient(to top right, #9d4edd -50%, #10002b 30%, #10002b 80%, #e0aaff 145%); 
     font-family: 'nata sans', sans-serif;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 
@@ -36,4 +35,44 @@ ul {
     li {
         padding-left: .5rem;
     }
+}
+
+
+a {
+    color: c.$purple;
+
+    &:hover {
+        color: c.$light-purple;
+    }
+}
+
+
+.container {
+    background: radial-gradient(transparent, rgba(0, 0, 0, 0.795)), url(/assets/bg.jpg) no-repeat; 
+    background-position: center;
+    background-size: cover; 
+    padding-top: .5rem;
+}
+
+.logo {
+    top: 0;
+    font-size: 1rem;
+    margin: 0;
+    color: c.$light-purple;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+}
+
+.credits {
+    position: fixed;
+    bottom: .5rem;
+    font-size: .8rem;
+    text-align: center;
+    color: c.$lavender;
+}
+
+.book .credits,
+.detail-page + .credits {
+    position: static;
+    padding-block: 2rem 1rem;
 }

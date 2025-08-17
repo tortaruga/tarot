@@ -1,32 +1,17 @@
 import { useParams } from "react-router-dom"
-import tarot from '../tarot-images.json';
-import LiElement from './LiElement.jsx';
-import Keyword from './Keyword.jsx';
-import { useState, useRef, useEffect } from "react";
+import { useState} from "react";
+import { Link } from "react-router-dom";
 
-export default function DetailPage(props) {
+import tarot from '../../tarot-images.json';
+import LiElement from '../LiElement.jsx';
+import Keyword from '../Keyword.jsx';
+
+export default function DetailPage() {
     const [light, setLight] = useState(true);
     const [show, setShow] = useState('');
 
     const {id} = useParams();
     const card = tarot.cards.find(card => slugify(card.name) === id);
-    const questionsRef = useRef(null);
-    const characteristicsRef = useRef(null);
-    const fortuneRef = useRef(null);
-    const meaningsRef = useRef(null);
-    const [contentHeights, setContentHeights] = useState({
-        characteristics: 'auto',
-        questions: 'auto',
-        fortune: 'auto',
-        meanings: 'auto',
-    }) 
-
-    useEffect(() => {
-        if (questionsRef) {
-            
-        }
-    }, [show])
-
     
     function fixImgPath(path) {
         return `/cards/${path}`;
@@ -70,7 +55,11 @@ export default function DetailPage(props) {
     }
 
     return (
+        <div className="container">
+        <Link to='/' style={{textDecoration: 'none'}}><h2 className='logo'>arcana</h2></Link>
+
         <section className="detail-page">
+
             <div className="general">
                 {card.suit === 'Trump' && <p>{card.number}.</p>}
                 <img src={fixImgPath(card.img)} alt="card illustration" />
@@ -86,10 +75,10 @@ export default function DetailPage(props) {
                 <div className="characteristics box">
                     <div className="header" id="characteristics" onClick={handleShownContent}>
                         <h3>characteristics</h3>
-                        <button className={show === 'characteristics' ? 'active' : ''}></button>
+                        <button className={show === 'characteristics' ? 'active' : ''} aria-label="toggle collapsible content"></button>
                     </div>
 
-                    <div ref={characteristicsRef} className={show === 'characteristics' ? 'content' : 'content hide'}>
+                    <div className={show === 'characteristics' ? 'content' : 'content hide'}>
                     {card.Affirmation && <p>Affirmation: <span>{card.Affirmation}</span></p> }
             
                     {card.Archetype && <p>Archetype: <span>{card.Archetype}</span></p>}
@@ -98,7 +87,7 @@ export default function DetailPage(props) {
             
                     {card.Numerology && <p>Numerology: <span>{card.Numerology}</span></p>}
 
-                    {card.Elemental && <p>Element: <span>{card.Elemental}</span></p>}
+                    {card.Elemental && <p>Elemental: <span>{card.Elemental}</span></p>}
 
                     {card.Astrology && <p>Astrology: <span>{card.Astrology}</span></p>}
 
@@ -111,10 +100,10 @@ export default function DetailPage(props) {
                 <div className="questions box two">
                     <div className="header" id="questions" onClick={handleShownContent}>
                         <h3>Questions to ask</h3>
-                        <button className={show === 'questions' ? 'active' : ''}></button>
+                        <button className={show === 'questions' ? 'active' : ''} aria-label="toggle collapsible content"></button>
                     </div>
                     
-                    <div ref={questionsRef} className={show === 'questions' ? 'content' : 'content hide'}>
+                    <div className={show === 'questions' ? 'content' : 'content hide'}>
                         <ul>{questionsLi}</ul>
                     </div>
                 </div>
@@ -122,10 +111,10 @@ export default function DetailPage(props) {
                 <div className="fortune box">
                     <div className="header" id="fortune" onClick={handleShownContent}>
                         <h3>Fortune-telling</h3>
-                        <button className={show === 'fortune' ? 'active' : ''}></button>
+                        <button className={show === 'fortune' ? 'active' : ''} aria-label="toggle collapsible content"></button>
                     </div>
                     
-                    <div ref={fortuneRef} className={show === 'fortune' ? 'content' : 'content hide'}>
+                    <div className={show === 'fortune' ? 'content' : 'content hide'}>
                         <ul>{fortunesLi}</ul>
                     </div>
                 </div>
@@ -133,10 +122,10 @@ export default function DetailPage(props) {
                 <div className="meanings box two">
                     <div className="header" id="meanings" onClick={handleShownContent}>
                         <h3>Meanings</h3>
-                        <button className={show === 'meanings' ? 'active' : ''}></button>
+                        <button className={show === 'meanings' ? 'active' : ''} aria-label="toggle collapsible content"></button>
                     </div>
                     
-                    <div ref={meaningsRef} className={show === 'meanings' ? 'content' : 'content hide'}>
+                    <div className={show === 'meanings' ? 'content' : 'content hide'}>
                         <div className="btns">
                             <button className={light ? 'active' : ''} onClick={() => setLight(true)}>upright</button>
                             <button className={!light ? 'active' : ''} onClick={() => setLight(false)}>reversed</button>
@@ -147,8 +136,10 @@ export default function DetailPage(props) {
                 </div>
     
              </div>
-
-            
+      
         </section>
+        <div className="credits">arrow icon by <a href="https://www.svgrepo.com/" target="_blank">SVGrepo</a> </div>
+
+        </div>
     )
 }

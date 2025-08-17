@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import tarot from '../tarot-images.json';
-import Card from './Card';
-import shuffleGif from '/assets/sun.svg';
 import { Link } from 'react-router-dom';
+
+import tarot from '../../tarot-images.json';
+import Card from '../Card';
+import shuffleGif from '/assets/sun.svg';
 
 export default function Reading() {
     const cards = tarot.cards;
@@ -59,7 +60,11 @@ export default function Reading() {
     }
 
     return (
+        <div className='container'>
+            <Link to='/' style={{textDecoration: 'none'}}><h2 className='logo'>arcana</h2></Link>
+
         <section className="reading">
+
             {(cardElements.length === 0 && !isShuffling) && (
                 <div className="introduction">
                     <h2>Card Reading</h2>
@@ -70,7 +75,7 @@ export default function Reading() {
             )}
 
             {isShuffling && <img src={shuffleGif} id='shuffle-gif' alt="shuffling deck gif" /> }
-
+            {isShuffling && <div className="credits">icon by <a href="https://www.flaticon.com/free-icons/tarot" target='_blank'>Imogen.Oh - Flaticon</a></div> }
 
             {(showCards && cardElements.length !== 0) && (
                 <div className="reading-container">
@@ -78,10 +83,11 @@ export default function Reading() {
                 <div className="cards">{cardElements}</div>
                 <button onClick={handleBeginButton}>new reading</button>
 
-                <Link to='/book' style={{color: 'inherit', fontSize: '.9rem'} } >or explore all cards</Link>
+                <Link to='/book' style={{color: 'inherit', fontSize: '.9rem'} }>or explore all cards</Link>
               </div>
-            )}
-           
+            )} 
+    
         </section>
+        </div>
     )
 }

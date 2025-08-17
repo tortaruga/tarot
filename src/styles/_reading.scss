@@ -8,9 +8,7 @@
     justify-content: center;
     align-items: center;
     animation: appear 4s both;
-    background: radial-gradient(transparent, rgba(0, 0, 0, 0.795)), url(/assets/bg.jpg) no-repeat; 
-    background-position: center;
-    background-size: cover; 
+    padding-bottom: 1rem;
 }
 
 .reading-container {
@@ -19,7 +17,6 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
-    // animation: appear 4s both;
 }
 
 #shuffle-gif {
@@ -100,7 +97,6 @@ img {
     box-shadow: .3rem .2rem 40px rgba(5, 5, 5, 0.985);
     color: c.$cadetblue;
     z-index: 9;
-    // animation: appear 1s both;
     transition: 1s;
     font-size: .9rem;
 
