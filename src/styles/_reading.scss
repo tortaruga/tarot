@@ -40,7 +40,9 @@
       width: 30%;
       max-width: 300px;
       min-width: 200px;
- 
+      cursor: pointer;
+
+
       h1 {
         font-size: 1.2rem;
       }
@@ -117,7 +119,7 @@ img {
 .backdrop {
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(5, 5, 5, 0.301);

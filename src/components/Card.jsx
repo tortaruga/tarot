@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Keyword from "./Keyword"
 import closeIcon from '/assets/close-icon.svg';
 
